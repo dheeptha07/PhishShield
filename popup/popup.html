@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PhishShield</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header>
+    <div class="brand">🛡️ PhishShield</div>
+    <p>Email security assistant</p>
+  </header>
+
+  <main>
+    <h3>Analyze an email</h3>
+    <p id="status">Open an email in Gmail or Outlook, then analyze it.</p>
+
+    <button id="analyze">Analyze current email</button>
+
+    <section id="result" hidden>
+      <section id="mlResult" class="verdict-card">
+        <h4>Machine Learning Result</h4>
+        <p id="mlPrediction"></p>
+        <p id="mlRisk"></p>
+        <p id="mlScore"></p>
+        <p id="mlNote"></p>
+      </section>
+
+      <section class="details-card">
+        <h4>Extracted email</h4>
+        <p><strong>Subject:</strong> <span id="subject"></span></p>
+        <p><strong>Sender:</strong> <span id="sender"></span></p>
+        <p><strong>Links found:</strong> <span id="links"></span></p>
+        <p id="bodyPreview"></p>
+
+        <hr>
+
+        <h4>Link Security Check</h4>
+        <p id="linkStatus">Checking links...</p>
+        <ul id="linkFindings"></ul>
+
+        <hr>
+
+        <h4>Email Risk Assessment</h4>
+        <p id="riskLevel"></p>
+        <p id="riskScore"></p>
+        <ul id="riskReasons"></ul>
+      </section>
+    </section>
+  </main>
+
+  <script src="popup.js"></script>
+</body>
+</html>

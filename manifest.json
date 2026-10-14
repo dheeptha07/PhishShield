@@ -1,0 +1,32 @@
+
+{
+  "manifest_version": 3,
+  "name": "PhishShield",
+  "version": "1.0.0",
+  "description": "Detect suspicious emails in Gmail and Outlook on the web.",
+  "permissions": ["activeTab", "scripting"],
+  
+"host_permissions": [
+  "https://mail.google.com/*",
+  "https://outlook.office.com/*",
+  "https://outlook.live.com/*",
+  "https://outlook.cloud.microsoft/*",
+  "http://127.0.0.1:8000/*"
+],
+
+  "action": {
+    "default_title": "PhishShield",
+    "default_popup": "popup/popup.html"
+  },
+ "content_scripts": [
+  {
+    "matches": [
+      "https://mail.google.com/*",
+      "https://outlook.office.com/*",
+      "https://outlook.live.com/*",
+      "https://outlook.cloud.microsoft/*"
+    ],
+    "js": ["content.js"]
+  }
+]
+}

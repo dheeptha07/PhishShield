@@ -1,0 +1,27 @@
+
+# Python virtual environments
+venv/
+.venv/
+env/
+
+# Python cache files
+__pycache__/
+*.py[cod]
+
+# Secrets and environment variables
+.env
+.env.*
+!.env.example
+
+# Editor and operating-system files
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+# Ignore backend virtual environment and backup code
+backend/venv/
+content-backup.js
+# Training dataset (kept locally)
+backend/data/

@@ -1,0 +1,343 @@
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #171114;
+  --header: #21161c;
+  --card: #291b22;
+  --border: #49313b;
+  --rose: #e87991;
+  --rose-hover: #f39aaf;
+  --text: #f9eaf0;
+  --muted: #c5aab3;
+  --danger: #fb7185;
+  --warning: #fbbf24;
+  --success: #86efac;
+}
+
+body {
+  width: 360px;
+  max-height: 600px;
+  margin: 0;
+  overflow-y: auto;
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+header {
+  padding: 18px 20px 16px;
+  background: var(--header);
+  border-bottom: 1px solid var(--border);
+}
+
+.brand {
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  color: var(--text);
+}
+
+header p {
+  margin: 5px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+main {
+  padding: 18px;
+}
+
+h3 {
+  margin: 0 0 8px;
+  font-size: 16px;
+  color: var(--text);
+}
+
+h4 {
+  margin: 16px 0 9px;
+  font-size: 13px;
+  color: var(--rose);
+}
+
+p {
+  overflow-wrap: anywhere;
+}
+
+#status {
+  margin: 8px 0 14px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+button {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  background: var(--rose);
+  color: #27131b;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background: var(--rose-hover);
+}
+
+button:active {
+  transform: scale(0.99);
+}
+
+button:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 3px;
+}
+
+#result {
+  margin-top: 16px;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--card);
+  overflow-wrap: anywhere;
+}
+
+#result p {
+  margin: 8px 0;
+}
+
+#result strong {
+  color: var(--text);
+}
+
+#bodyPreview {
+  max-height: 90px;
+  overflow-y: auto;
+  padding: 9px;
+  border-radius: 7px;
+  background: var(--bg);
+  color: var(--muted);
+  font-size: 12px;
+  white-space: pre-wrap;
+}
+
+#result hr {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: 14px 0;
+}
+
+#result ul {
+  margin: 8px 0;
+  padding-left: 19px;
+}
+
+#result li {
+  margin: 6px 0;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+
+#mlResult {
+  margin-top: 14px !important;
+  padding: 13px !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 10px !important;
+  background: var(--bg);
+  overflow-wrap: anywhere;
+}
+
+#mlResult h4 {
+  margin-top: 0;
+}
+
+#mlResult p {
+  margin: 8px 0;
+}
+
+#mlResult p:last-child {
+  color: var(--muted);
+  font-size: 11px !important;
+  line-height: 1.5;
+}
+
+#linkStatus,
+#riskLevel,
+#riskScore {
+  font-weight: 600;
+}
+
+#linkFindings li {
+  padding: 8px;
+  border-radius: 7px;
+  background: var(--bg);
+  margin-bottom: 8px;
+}
+
+#linkFindings li div {
+  overflow-wrap: anywhere;
+}
+
+#result[hidden] {
+  display: none;
+}
+
+#bodyPreview::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  width: 6px;
+}
+
+#bodyPreview::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 10px;
+}
+
+/* Compact risk findings */
+#riskReasons {
+  padding-left: 17px;
+  margin-top: 6px;
+}
+
+#riskReasons li {
+  margin: 4px 0;
+  line-height: 1.4;
+}
+
+/* Make the ML result card more compact */
+#mlResult {
+  padding: 12px !important;
+}
+
+#mlResult p {
+  margin: 6px 0;
+}
+
+/* Reduce excess spacing between result sections */
+#result h4 {
+  margin-top: 12px;
+  margin-bottom: 7px;
+}
+
+#result hr {
+  margin: 11px 0;
+}
+
+/* Refine the header */
+header {
+  padding: 16px 18px;
+}
+
+.brand {
+  font-size: 20px;
+  letter-spacing: 0.3px;
+}
+
+/* Tighter main layout */
+main {
+  padding: 15px;
+}
+
+h3 {
+  margin-bottom: 5px;
+}
+
+/* Make the analysis button cleaner */
+button {
+  min-height: 44px;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(232, 121, 145, 0.12);
+}
+
+/* Cleaner result card */
+#result {
+  margin-top: 14px;
+  padding: 12px;
+  border-radius: 12px;
+}
+
+/* Make email details easier to scan */
+#result > h4:first-child {
+  margin-top: 8px;
+}
+
+#result p {
+  line-height: 1.45;
+}
+
+#bodyPreview {
+  max-height: 76px;
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+/* Consistent section headings */
+#result h4 {
+  letter-spacing: 0.15px;
+}
+
+/* Main machine-learning verdict card */
+.verdict-card {
+  margin: 14px 0;
+  padding: 15px;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--rose);
+  border-radius: 10px;
+  background: var(--bg);
+}
+
+.verdict-card h4 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-size: 15px;
+}
+
+.verdict-card p {
+  margin: 8px 0;
+  overflow-wrap: anywhere;
+}
+
+/* Phishing warning */
+.verdict-card.phishing {
+  border-left-color: var(--danger);
+}
+
+.verdict-card.phishing h4 {
+  color: var(--danger);
+}
+
+/* Benign result */
+.verdict-card.benign {
+  border-left-color: var(--success);
+}
+
+.verdict-card.benign h4 {
+  color: var(--success);
+}
+
+#mlNote {
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+/* Email details card below the verdict */
+.details-card {
+  margin-top: 12px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--card);
+}
+
+.details-card > h4:first-child {
+  margin-top: 4px;
+}
