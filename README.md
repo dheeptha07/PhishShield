@@ -28,7 +28,7 @@ PhishShield uses a Chrome extension and a local FastAPI backend to analyze email
 1. **Email extraction (`content.js`):** Runs on supported Gmail and Outlook web pages to extract relevant email information.
 2. **Popup interface (`popup/`):** Provides the PhishShield interface through `popup.html`, `popup.js`, and `popup.css`.
 3. **Backend API (`backend/app.py`):** Receives analysis requests through FastAPI and loads the trained model from `backend/phishshield_model.pkl`.
-4. **Machine learning prediction:** The trained model classifies email content, while the extension's rule-based checks look for suspicious language and indicators.
+4. **Machine learning prediction:** The trained model classifies email content, while rule-based checks look for suspicious language and indicators.
 5. **Results:** The extension presents the assessment to help users recognize potentially suspicious messages.
 
 ### Supported webmail domains
@@ -40,9 +40,19 @@ PhishShield uses a Chrome extension and a local FastAPI backend to analyze email
 
 During local development, the extension connects to the backend at `http://127.0.0.1:8000`. Keep the backend running while testing the extension.
 
+## 📸 Screenshots
+
+### Benign email detection
+
+![PhishShield identifying a likely benign email](screenshots/benign-email.png)
+
+### Phishing email detection
+
+![PhishShield identifying a phishing email](screenshots/phishing-email.png)
+
 ## 📊 Model Evaluation
 
-The current training experiment reported the following results:
+The project's reported training and evaluation run used **103,512 usable emails**.
 
 | Metric | Result |
 |---|---:|
@@ -58,7 +68,7 @@ The reported confusion matrix was:
 | Benign | 11,186 | 239 |
 | Phishing | 207 | 9,071 |
 
-These results are from the project's reported evaluation run. Actual performance on new emails may differ, and model predictions should not be treated as a guarantee that an email is safe or malicious.
+These results are from the project's reported evaluation run. Actual performance on new emails may differ. Model scores are not calibrated probabilities and should not be treated as a guarantee that an email is safe or malicious.
 
 ## 🚀 Getting Started
 
@@ -66,6 +76,7 @@ These results are from the project's reported evaluation run. Actual performance
 
 - Google Chrome
 - Python 3.10 or a compatible version for the dependencies
+- Git
 
 ### 1. Clone the repository
 
@@ -76,16 +87,13 @@ cd PhishShield
 
 ### 2. Set up the backend environment
 
-Create a virtual environment:
+Create and activate a virtual environment from the repository root.
 
-```bash
-python -m venv .venv
-```
-
-Activate it on Windows:
+**Windows PowerShell:**
 
 ```powershell
-.venv\Scripts\activate
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
 ```
 
 Install the backend dependencies:
@@ -96,15 +104,24 @@ pip install -r backend/requirements.txt
 
 ### 3. Start the FastAPI backend
 
-Run Uvicorn from the repository root:
+From the repository root, run:
 
 ```bash
 uvicorn backend.app:app --reload --host 127.0.0.1 --port 8000
 ```
 
-The API should be available at `http://127.0.0.1:8000`. You can inspect the interactive API documentation at `http://127.0.0.1:8000/docs`.
+If the command cannot import `backend.app`, change into the backend folder and run:
+
+```bash
+cd backend
+uvicorn app:app --reload --host 127.0.0.1 --port 8000
+```
+
+The API should be available at `http://127.0.0.1:8000`. Interactive API documentation is available at `http://127.0.0.1:8000/docs`.
 
 The trained model file, `backend/phishshield_model.pkl`, must be present for the backend to start successfully.
+
+Keep the backend terminal running while testing the extension.
 
 ### 4. Load the Chrome extension
 
@@ -112,9 +129,10 @@ The trained model file, `backend/phishshield_model.pkl`, must be present for the
 2. Enable **Developer mode**.
 3. Click **Load unpacked**.
 4. Select the PhishShield project folder containing `manifest.json`.
-5. Open Gmail or Outlook on the web in Chrome and test the extension.
+5. Open Gmail or Outlook on the web in Chrome.
+6. Open an email, click the PhishShield extension icon, and select **Analyze current email**.
 
-Keep the backend running while using the extension. The extension's configured API URL must match the local backend address.
+The extension's configured API URL must match the local backend address.
 
 ## 🧪 Testing
 
@@ -130,7 +148,8 @@ Compare the displayed assessment with the known test case. Detection is probabil
 ## 🔒 Security and Limitations
 
 - Keep API keys, credentials, private email content, and local environment files out of the public repository.
-- The development backend is configured to run locally; a public deployment would require appropriate authentication, access controls, and secure transport.
+- The development backend is configured for local use. A public deployment would require appropriate authentication, access controls, and secure transport.
+- The current development CORS configuration allows requests from any origin. Restrict allowed origins before deploying the backend publicly.
 - Machine learning and keyword rules can produce false positives and false negatives.
 - This project is an assistive security tool, not a replacement for careful verification of email senders, URLs, and requests for sensitive information.
 
@@ -147,7 +166,5 @@ Compare the displayed assessment with the known test case. Detection is probabil
 **Dheeptha M.**
 
 - GitHub: [@dheeptha07](https://github.com/dheeptha07)
-
----
 
 *PhishShield is an educational project exploring machine learning and browser-based phishing detection.*
