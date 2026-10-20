@@ -69,6 +69,32 @@ The reported confusion matrix was:
 | Phishing | 207 | 9,071 |
 
 These results are from the project's reported evaluation run. Actual performance on new emails may differ. Model scores are not calibrated probabilities and should not be treated as a guarantee that an email is safe or malicious.
+### Model Evaluation
+
+PhishShield was evaluated on a held-out test set using an 80:20 train-test split with stratified sampling.
+
+- **Dataset size:** 103,512 usable emails
+- **Benign emails:** 57,122
+- **Phishing emails:** 46,390
+- **Test accuracy:** 97.85%
+
+#### Classification Metrics
+
+| Class | Precision | Recall | F1-Score |
+|---|---:|---:|---:|
+| Benign | 98.18% | 97.91% | 98.04% |
+| Phishing | 97.43% | 97.77% | 97.60% |
+
+#### Confusion Matrix
+
+| Actual / Predicted | Benign | Phishing |
+|---|---:|---:|
+| Benign | 11,186 | 239 |
+| Phishing | 207 | 9,071 |
+
+**Interpretation:** The model correctly classified most benign and phishing emails in the test set. It identified 9,071 phishing emails correctly and missed 207 phishing emails by classifying them as benign. A further 239 benign emails were incorrectly flagged as phishing.
+
+*Note: These metrics describe performance on the held-out test set. They do not guarantee the same accuracy on new, real-world emails.*
 
 ## 🚀 Getting Started
 
