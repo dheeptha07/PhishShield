@@ -53,8 +53,7 @@ These results are from the project's reported evaluation run. Actual performance
 ### Prerequisites
 
 - Google Chrome
-- Python 3.10 or a compatible version for the installed dependencies
-- A local Python environment
+- Python 3.10 or a compatible version for the dependencies
 
 ### 1. Clone the repository
 
@@ -63,47 +62,47 @@ git clone https://github.com/dheeptha07/PhishShield.git
 cd PhishShield
 ```
 
-### 2. Install backend dependencies
+### 2. Set up the backend environment
 
-Create and activate a virtual environment:
+Create a virtual environment:
 
 ```bash
 python -m venv .venv
 ```
 
-On Windows:
+Activate it on Windows:
 
 ```powershell
 .venv\Scripts\activate
 ```
 
-Install the dependencies listed in the project's requirements file, if provided:
+Install the backend dependencies:
 
 ```bash
-pip install -r requirements.txt
+pip install -r backend/requirements.txt
 ```
 
-If the repository does not contain a `requirements.txt`, install the backend dependencies documented by the project before proceeding.
+### 3. Start the FastAPI backend
 
-### 3. Start the backend
-
-Run the FastAPI application using the actual Python module filename in the repository. For example, if the file is named `main.py`:
+Run Uvicorn from the repository root:
 
 ```bash
-uvicorn main:app --reload --host 127.0.0.1 --port 8000
+uvicorn backend.app:app --reload --host 127.0.0.1 --port 8000
 ```
 
-Keep the backend running while testing the extension. The extension's configured API URL must match the backend address.
+The API should be available at `http://127.0.0.1:8000`. You can inspect the interactive API documentation at `http://127.0.0.1:8000/docs`.
+
+The trained model file, `backend/phishshield_model.pkl`, must be present for the backend to start successfully.
 
 ### 4. Load the Chrome extension
 
 1. Open `chrome://extensions` in Chrome.
 2. Enable **Developer mode**.
 3. Click **Load unpacked**.
-4. Select the project's extension folder containing `manifest.json`.
-5. Open Gmail or Outlook on the web and test the extension on sample emails.
+4. Select the PhishShield project folder containing `manifest.json`.
+5. Open Gmail or Outlook on the web in Chrome and test the extension.
 
-Use only test emails that you are authorized to analyze. Avoid including real personal or confidential email content in screenshots or public demonstrations.
+Keep the backend running while using the extension. The extension's configured API URL must match the local backend address.
 
 ## 🧪 Testing
 
