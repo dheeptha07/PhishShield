@@ -23,10 +23,22 @@ PhishShield is a Chrome extension that helps identify potentially malicious emai
 
 ## 🏗️ Architecture
 
-1. The Chrome extension extracts relevant email information from a supported webmail page.
-2. The extension sends the extracted information to the local FastAPI backend.
-3. The backend applies the trained machine learning model and analysis rules.
-4. The results are returned to the extension for display.
+PhishShield uses a Chrome extension and a local FastAPI backend to analyze email content.
+
+1. **Email extraction (`content.js`):** Runs on supported Gmail and Outlook web pages to extract relevant email information.
+2. **Popup interface (`popup/`):** Provides the PhishShield interface through `popup.html`, `popup.js`, and `popup.css`.
+3. **Backend API (`backend/app.py`):** Receives analysis requests through FastAPI and loads the trained model from `backend/phishshield_model.pkl`.
+4. **Machine learning prediction:** The trained model classifies email content, while the extension's rule-based checks look for suspicious language and indicators.
+5. **Results:** The extension presents the assessment to help users recognize potentially suspicious messages.
+
+### Supported webmail domains
+
+- Gmail: `mail.google.com`
+- Outlook on the web: `outlook.office.com`
+- Outlook.com: `outlook.live.com`
+- Microsoft Outlook web: `outlook.cloud.microsoft`
+
+During local development, the extension connects to the backend at `http://127.0.0.1:8000`. Keep the backend running while testing the extension.
 
 ## 📊 Model Evaluation
 
