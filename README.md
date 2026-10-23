@@ -189,3 +189,69 @@ Compare the displayed assessment with the known test case. Detection is probabil
 - GitHub: [@dheeptha07](https://github.com/dheeptha07)
 
 *PhishShield is an educational project exploring machine learning and browser-based phishing detection.*
+## Cloud Deployment
+
+PhishShield's FastAPI backend is deployed on Render and can be accessed at:
+
+**Live API:** https://phishshield-m3sn.onrender.com
+
+- API health endpoint: `/`
+- Interactive API documentation: `/docs`
+- Email analysis endpoint: `POST /analyze`
+
+The backend returns a phishing prediction, model score, and risk classification for the submitted email.
+
+> Note: The Render free-tier service may take longer to respond after a period of inactivity.
+
+## Docker Setup
+
+The backend can also be run locally using Docker.
+
+Build the Docker image from the repository root:
+
+```bash
+docker build -t phishshield-api ./backend
+```
+
+Run the container:
+
+```bash
+docker run -d --name phishshield-api -p 8000:8000 phishshield-api
+```
+
+Access the local API at `http://localhost:8000` and its interactive documentation at `http://localhost:8000/docs`.
+
+Stop the container:
+
+```bash
+docker stop phishshield-api
+```
+
+## Automated API Testing
+
+PhishShield includes automated API tests using `pytest` and `httpx`, with a GitHub Actions workflow that runs tests on pushes and pull requests.
+
+Install the testing dependencies:
+
+```bash
+python -m pip install pytest httpx
+```
+
+Run the tests from the repository root:
+
+```bash
+python -m pytest backend/tests/test_api.py -v
+```
+
+The test suite previously passed all three tests locally, and the GitHub Actions workflow completed successfully. Check the latest workflow run for the current status.
+
+## Supported Email Platforms
+
+- Gmail in Chrome
+- Outlook on the web in Chrome
+
+The Chrome extension extracts email details and sends them to the PhishShield API for analysis.
+
+## Screenshots
+
+Project screenshots are available in the [`screenshots`](screenshots/) folder. They demonstrate the extension interface and phishing-detection results.
